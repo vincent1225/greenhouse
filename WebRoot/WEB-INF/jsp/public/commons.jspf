@@ -1,0 +1,16 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/ajax.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/ajax2.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/commons.js?randomId=<%=Math.random()%>"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/validate.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/paymentcard.js?randomId=<%=Math.random()%>"></script> 
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/droplist.js"></script>
+<script type="text/javascript"  src="${pageContext.request.contextPath}/js/autocomplete.js?randomId=<%=Math.random()%>"></script>
+<script type="text/javascript"  src="${pageContext.request.contextPath}/js/LodopFuncs.js?randomId=<%=Math.random()%>"></script>
+<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?randomId=<%=Math.random()%>" />
+<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/pageView.css" />
+<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/autocomplete.css" />
+<script type="text/javascript">
+</script>

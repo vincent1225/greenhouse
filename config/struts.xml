@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<!-- 配置为开发模式 -->
+	<constant name="struts.devMode" value="false" />
+	<!-- 把扩展名配置为action -->
+	<constant name="struts.action.extension" value="action" />
+	<!-- 把主题配置为simple -->
+	<constant name="struts.ui.theme" value="simple" />
+
+
+	<package name="default" namespace="/" extends="struts-default">
+		<interceptors>
+			<!-- 声明拦截器 -->
+			<interceptor name="checkPrivilege"
+				class="com.newcoming.greenhouse.util.CheckPrivilegeInterceptor"></interceptor>
+
+			<!-- 重新定义默认的拦截器栈 -->
+			<interceptor-stack name="defaultStack">
+				<interceptor-ref name="checkPrivilege"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+
+
+		<!-- 全局的Result配置 -->
+		<global-results>
+			<result name="loginUI">/WEB-INF/jsp/userAction/login.jsp</result>
+			<result name="noPrivilegeError">/noPrivilegeError.jsp</result>
+		</global-results>
+
+
+		<!-- 配置测试用的Action，未与Spring整合，class属性写类的全名 -->
+		<!-- 当Struts2与Spring整合后，class属性可以写bean的名称 -->
+		<action name="test" class="testAction">
+			<result name="success">/test.jsp</result>
+		</action>
+
+
+		<!-- 部门管理 -->
+		<!--<action name="department_*" class="departmentAction" method="{1}"> 
+			<result name="list">/WEB-INF/jsp/departmentAction/list.jsp</result> <result 
+			name="saveUI">/WEB-INF/jsp/departmentAction/saveUI.jsp</result> <result name="toList" 
+			type="redirectAction">department_list?parentId=${parentId} </result> </action> -->
+
+		<!-- 角色管理 -->
+		<action name="role_*" class="roleAction" method="{1}">
+			<result name="index">/WEB-INF/jsp/roleAction/index.jsp</result>
+			<result name="list">/WEB-INF/jsp/roleAction/list.jsp</result>
+			<result name="saveUI">/WEB-INF/jsp/roleAction/saveUI.jsp</result>
+			<result name="queryUI">/WEB-INF/jsp/roleAction/queryUI.jsp</result>
+			<result name="setPrivilegeUI" type="redirect">/setPrivilegeUI.jsp</result>
+		</action>
+
+		<!-- 用户管理 -->
+		<action name="user_*" class="userAction" method="{1}">
+			<result name="index">/WEB-INF/jsp/userAction/index.jsp</result>
+			<result name="queryUI">/WEB-INF/jsp/userAction/queryUI.jsp</result>
+			<result name="list">/WEB-INF/jsp/userAction/list.jsp</result>
+			<result name="saveUI">/WEB-INF/jsp/userAction/saveUI.jsp</result>
+			<result name="editPwdUI">/WEB-INF/jsp/userAction/editPwdUI.jsp</result>
+			<result name="toList" type="redirectAction">user_list</result>
+			<result name="logout">/WEB-INF/jsp/userAction/login.jsp</result>
+			<result name="toIndex" type="redirect">/index.jsp</result>
+		</action>
+
+
+		<!-- 园区管理 -->
+		<action name="park_*" class="parkAction" method="{1}">
+			<result name="index">/WEB-INF/jsp/parkAction/index.jsp</result>
+			<result name="list">/WEB-INF/jsp/parkAction/list.jsp</result>
+			<result name="remark">/WEB-INF/jsp/parkAction/remark.jsp</result>
+			<result name="saveUI">/WEB-INF/jsp/parkAction/saveUI.jsp</result>
+			<result name="queryUI">/WEB-INF/jsp/parkAction/queryUI.jsp</result>
+			<result name="toList" type="redirectAction">park_list</result>
+		</action>
+
+		<!-- 大棚管理 -->
+		<action name="greenhouse_*" class="greenhouseAction" method="{1}">
+			<result name="index">/WEB-INF/jsp/greenhouseAction/index.jsp</result>
+			<result name="list">/WEB-INF/jsp/greenhouseAction/list.jsp</result>
+			<result name="saveUI">/WEB-INF/jsp/greenhouseAction/saveUI.jsp</result>
+			<result name="queryUI">/WEB-INF/jsp/greenhouseAction/queryUI.jsp
+			</result>
+			<result name="toList" type="redirectAction">greenhouse_list</result>
+		</action>
+		<!-- 设备管理 -->
+		<action name="equipment_*" class="equipmentAction" method="{1}">
+			<result name="index">/WEB-INF/jsp/equipmentAction/index.jsp</result>
+			<result name="list">/WEB-INF/jsp/equipmentAction/list.jsp</result>
+			<result name="saveUI">/WEB-INF/jsp/equipmentAction/saveUI.jsp</result>
+			<result name="queryUI">/WEB-INF/jsp/equipmentAction/queryUI.jsp</result>
+			<result name="toList" type="redirectAction">equipment_list</result>
+		</action>
+
+		<!-- 实时管理 -->
+		<action name="realtime_*" class="realtimeAction" method="{1}">
+			<result name="index">/WEB-INF/jsp/realtimeAction/index.jsp</result>
+			<result name="list">/WEB-INF/jsp/realtimeAction/list.jsp</result>
+			<result name="saveUI">/WEB-INF/jsp/realtimeAction/saveUI.jsp</result>
+			<result name="queryUI">/WEB-INF/jsp/realtimeAction/queryUI.jsp</result>
+			<result name="toList" type="redirectAction">realtime_list</result>
+		</action>
+		<!-- 历史管理 -->
+		<action name="history_*" class="historyAction" method="{1}">
+			<result name="index">/WEB-INF/jsp/historyAction/index.jsp</result>
+			<result name="list">/WEB-INF/jsp/historyAction/list.jsp</result>
+			<result name="toList" type="redirectAction">history_list</result>
+		</action>
+		
+		<!-- 阈值管理 -->
+		<action name="threshold_*" class="thresholdAction" method="{1}">
+			<result name="index">/WEB-INF/jsp/thresholdAction/index.jsp</result>
+			<result name="list">/WEB-INF/jsp/thresholdAction/list.jsp</result>
+		</action>
+
+		<!-- 行政区管理 -->
+		<!--<action name="district_*" class="districtAction" method="{1}"> <result 
+			name="index">/WEB-INF/jsp/districtAction/index.jsp</result> <result name="queryUI">/WEB-INF/jsp/districtAction/queryUI.jsp</result> 
+			<result name="list">/WEB-INF/jsp/districtAction/list.jsp</result> <result 
+			name="saveUI">/WEB-INF/jsp/districtAction/saveUI.jsp</result> <result name="toList" 
+			type="redirectAction">district_list</result> </action> -->
+
+
+
+		<!-- 首页 -->
+		<action name="home_*" class="homeAction" method="{1}">
+			<result name="{1}">/WEB-INF/jsp/homeAction/{1}.jsp</result>
+		</action>
+
+
+	</package>
+
+	<!-- Add packages here -->
+	<package name="top" extends="json-default" namespace="/top">
+		<!--需要将struts-default改为json-default -->
+		<!-- setting action -->
+		<action name="data_*" class="com.newcoming.greenhouse.view.action.TopAction"
+			method="{1}">
+			<result type="json"></result>
+			<!--返回值类型设置为json,不设置返回页面 -->
+		</action>
+		<action name="android_*"
+			class="com.newcoming.greenhouse.view.action.AndroidAction" method="{1}">
+			<result type="json"></result>
+			<!--返回值类型设置为json,不设置返回页面 -->
+		</action>
+
+	</package>
+</struts>

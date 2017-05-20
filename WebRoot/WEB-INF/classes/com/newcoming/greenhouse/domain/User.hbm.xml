@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+			"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+			"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.newcoming.greenhouse.domain">
+
+	<class name="User" table="greenhouse_user">
+		<id name="id">
+			<generator class="sequence">
+				<param name="sequence">Sequence_user</param>
+			</generator>
+		</id>
+		<property name="loginName" />
+		<property name="password" />
+		<property name="name" />
+		<property name="gender" />
+		<property name="phoneNumber" />
+		<property name="email" />
+		<property name="remark" />
+		<property name="userTime" type="timestamp" />
+		<property name="del" type="java.lang.Long">
+			<column name="del" precision="22" scale="0" />
+		</property>
+		<many-to-one name="addBy" class="com.newcoming.greenhouse.domain.User"
+			fetch="select">
+			<column name="addBy" precision="22" scale="0" />
+		</many-to-one>
+		<many-to-one name="chaBy" class="com.newcoming.greenhouse.domain.User"
+			fetch="select">
+			<column name="chaBy" precision="22" scale="0" />
+		</many-to-one>
+		<many-to-one name="delBy" class="com.newcoming.greenhouse.domain.User"
+			fetch="select">
+			<column name="delBy" precision="22" scale="0" />
+		</many-to-one>
+		<!-- roles属性，本类与Role的多对多 -->
+		<set name="roles" table="greenhouse_user_role" lazy="false">
+			<key column="userId"></key>
+			<many-to-many class="Role" column="roleId"></many-to-many>
+		</set>
+		<!-- greenhouses属性，本类与Park的多对多 -->
+		<set name="greenhouses" table="greenhouse_user_greenhouse" lazy="false">
+			<key column="userId"></key>
+			<many-to-many class="Greenhouse" column="greenhouseId"></many-to-many>
+		</set>
+
+
+	</class>
+
+</hibernate-mapping>

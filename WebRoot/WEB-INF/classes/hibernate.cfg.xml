@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+
+<session-factory>
+
+	<!-- 1，数据库连接信息 org.hibernate.dialect.MySQL5InnoDBDialect     org.hibernate.dialect.Oracle10gDialect -->
+	<property name="dialect">
+		 org.hibernate.dialect.Oracle10gDialect
+	</property>
+
+		<property name="connection.url">jdbc:oracle:thin:@222.171.146.21:1521:greenhouse</property>
+		<property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+		<property name="connection.username">system</property>
+		<property name="connection.password">123456</property>
+
+
+	<!-- 2，其他配置 -->
+	<property name="show_sql">true</property>
+	<property name="hbm2ddl.auto">update</property>
+
+	<!-- 3，导入映射文件 -->
+	<mapping
+		resource="com/newcoming/greenhouse/domain/Privilege.hbm.xml" />
+	<mapping resource="com/newcoming/greenhouse/domain/Role.hbm.xml" />
+	<mapping resource="com/newcoming/greenhouse/domain/User.hbm.xml" />
+	<mapping
+		resource="com/newcoming/greenhouse/domain/DbFuncLog.hbm.xml" />
+	<mapping
+		resource="com/newcoming/greenhouse/domain/DbLoginLog.hbm.xml" />
+	<mapping
+		resource="com/newcoming/greenhouse/domain/Equipment.hbm.xml" />
+	<mapping
+		resource="com/newcoming/greenhouse/domain/EquipmentCmd.hbm.xml" />
+	<mapping
+		resource="com/newcoming/greenhouse/domain/Greenhouse.hbm.xml" />
+	<mapping resource="com/newcoming/greenhouse/domain/Park.hbm.xml" />
+	<mapping
+		resource="com/newcoming/greenhouse/domain/SensorData.hbm.xml" />
+
+
+</session-factory>
+
+</hibernate-configuration>
